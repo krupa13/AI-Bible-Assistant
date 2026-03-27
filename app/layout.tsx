@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ReduxProvider from "@/components/providers/ReduxProvider";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "700"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -26,8 +31,26 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      style={{
+        fontFamily:
+          'var(--font-geist-sans), Inter, Segoe UI, system-ui, sans-serif',
+        background:
+          'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%)',
+        color: '#f1f5f9',
+      }}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body
+        className="min-h-full flex flex-col"
+        style={{
+          fontFamily:
+            'var(--font-geist-sans), Inter, Segoe UI, system-ui, sans-serif',
+          background:
+            'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%)',
+          color: '#f1f5f9',
+        }}
+      >
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   );
 }
